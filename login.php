@@ -1,7 +1,23 @@
 <?php
 require 'function.php';
 
-if(issset($POST))
+if(issset($_POST['login'])){
+    //? cek email dan password
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    //? cek database login email dan password
+    $cekdatabase = mysqli_query($conn, "select * from login where email = '$email' and password = $'password'");
+
+    //? cek login misal udh lebih dari 1 maka dibolehin masuk
+    $hitung = mysqli_num_rows($cekdatabase);
+    if($hitung > 0){
+        $SESSION['log'] = true;
+        header('Location: index.php');
+    } else {
+        header('Location: login.php');
+    }
+}
 ?>
 
 <!DOCTYPE html>
