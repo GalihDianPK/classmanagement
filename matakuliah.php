@@ -55,7 +55,7 @@ require 'cek.php';
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="matakuliah.php">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Mata Kuliah
                             </a>
@@ -126,64 +126,7 @@ require 'cek.php';
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Mata kuliah Aktif</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Tugas belum dikerjakan</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Tugas Selesai</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Deadline < 3 hari</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -240,6 +183,12 @@ require 'cek.php';
                 </footer>
             </div>
         </div>
+
+        <!-- Ganti bootstrap 5 menjadi 4 -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Ganti bootstrap 5 menjadi 4 -->
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -247,5 +196,49 @@ require 'cek.php';
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+
+         <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Tambah Barang Masuk</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body --> <!-- kode untuk tambah barang -->
+            <form method="post">
+            <div class="modal-body">
+
+            <select name="barangnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
+                <?php
+                $ambilsemuadatanya = mysqli_query($conn, "SELECT * from stock");
+                while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
+                    $namabarangnya = $fetcharray['namabarang'];
+                    $idbarangnya = $fetcharray['idbarang'];
+                ?>
+
+                <option value="<?=$idbarangnya;?>"><?=$namabarangnya;?></option>
+
+                 <?php
+                }
+                
+                ?>
+            </select>
+
+            <br>
+            <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
+            <br> <!-- function php -->
+            <input type="text" name="penerima" class="form-control" placeholder="Penerima" required>
+            <br>
+            <button type="submit" name="barangmasuk" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div> 
+
     </body>
 </html>
