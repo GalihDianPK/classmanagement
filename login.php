@@ -25,11 +25,10 @@ if (isset($_POST['login'])){ //? ini diambil dari login php html bagian button d
 
 //? cek login, kalau udah langsung ke index
 if (!isset($_SESSION['log'])){
-
+   
 } else {
-    header('location:index.php');
-    exit;
-};
+    header('Location:index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +72,7 @@ if (!isset($_SESSION['log'])){
                                                 <a class="small" href="password.html">Forgot Password?</a>
 
                                                 <!-- ditambah type submit dan name login -->
-                                                <a type="submit" name="login" class="btn btn-primary" href="index.php">Login</a>
+                                                <a type="submit" name="login" class="btn btn-primary" href="index.php">Login</a> 
                                             </div>
                                         </form>
                                     </div>
