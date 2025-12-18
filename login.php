@@ -1,32 +1,33 @@
 <?php
-require 'function.php';
+require 'function.php'; //! ini wajin ditambahkan biar link ke function.php
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])){ //? ini diambil dari login php html bagian button dan input
+    $email = $_POST['email']; //? sama
+    $password = $_POST['password']; //? sama
     
-    //? cek email dan password
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    //? buat hash untuk kemanan password
+    $hash= password_hash($password, PASSWORD_DEFAULT); 
 
-    //? cek database login email dan password
-    $cekdatabase = mysqli_query($conn, "select * from login where email = '$email' and password = '$password'");
 
-    //? cek login misal udh lebih dari 1 maka dibolehin masuk
+    //? mencocokan dengan data databse
+    $cekdatabase = mysqli_query($conn, "SELECT * FROM login where email='$email' and password='$password'");
+    
+    //? hitung jumlah data
     $hitung = mysqli_num_rows($cekdatabase);
-    if($hitung > 0){
+
+    if($hitung > 0) {
         $_SESSION['log'] = 'True';
-        header('Location: index.php');
-        exit;
+        header('location:index.php');
     } else {
-        header('Location: login.php');
-        exit;
+        header('location:login.php');
     };
 };
 
-//? cek kalau sudah login bisa langsung ke index.php
-if(!isset($_SESSION['log'])){
-   
+//? cek login, kalau udah langsung ke index
+if (!isset($_SESSION['log'])){
+
 } else {
-    header('Location: index.php');
+    header('location:index.php');
     exit;
 };
 ?>
@@ -55,20 +56,24 @@ if(!isset($_SESSION['log'])){
                                     <div class="card-body">
                                         <form>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <!-- diberi name padad nama inputnya -->
+                                                <input class="form-control" name="email" type="email" id="inputEmail" placeholder="name@example.com" required />
                                                 <label for="inputEmail">Email address</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                                <!-- diberi name padad nama inputnya -->
+                                                <input class="form-control" name="password" type="password" placeholder="Password" required/>
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                <input class="form-check-input" name="rememberpassword"  id="inputPassword"  type="checkbox" value="" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.html">Forgot Password?</a>
-                                                <a class="btn btn-primary" href="index.html">Login</a>
+
+                                                <!-- ditambah type submit dan name login -->
+                                                <a type="submit" name="login" class="btn btn-primary" href="index.php">Login</a>
                                             </div>
                                         </form>
                                     </div>
