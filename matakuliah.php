@@ -14,7 +14,7 @@ require 'cek.php';
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>E-CLASS 2DC02</title>
+        <title>Mata Kuliah</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@ require 'cek.php';
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">E-CLASS 2DC02</a></a>
+            <a class="navbar-brand ps-3" href="index.php">E-CLASS 2DC02</a></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -55,7 +55,7 @@ require 'cek.php';
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="index.php">
+                            <a class="nav-link" href="matakuliah.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Mata Kuliah
                             </a>
@@ -115,54 +115,60 @@ require 'cek.php';
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        Mahasiswa 2DC02
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Mata Kuliah 2DC02</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">PRO ATA 2025/2026</li>
                         </ol>
-                        
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                            <div class="card-header d-flex align-items-center">
+                                
+                                 <!-- Icon + Text (Kiri) -->
+                                <i class="fas fa-table me-2"></i>
+                                <span>Jadwal Perkuliahan</span>
+
+                                <!-- untuk button ddari w3 -->
+                                <button type="button" class="btn btn-primary ms-auto" data-toggle="modal" data-target="#myModal"> 
+                                    Tambah Matkul
+                                </button>
                             </div>
+                            
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Matkul</th>
+                                            <th>Dosen</th>
+                                            <th>Jam matkul</th>
+                                            <th>Hari</th>
+                                            <th>Tanggal</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
+                                        <?php
+                                            $ambilsemuadatamatkul = mysqli_query($conn, "SELECT * FROM matakuliah");
+                                            while($data = mysqli_fetch_array($ambilsemuadatamatkul)){
+                                                $namamatkul = $data['namamatkul'];
+                                                $namadosen = $data['namadosen'];
+                                                $jammatkul = $data['jammatkul'];
+                                                $tanggal = $data['tanggal'];
+                
+                                        ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td><?=$namamatkul;?></td>
+                                            <td><?=$namadosen;?></td>
+                                            <td><?=$jammatkul?></td
+                                            <td><?=$tanggal?></td>
                                         </tr>
+                                        <?php
+                                            };
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -183,62 +189,70 @@ require 'cek.php';
                 </footer>
             </div>
         </div>
-
-        <!-- Ganti bootstrap 5 menjadi 4 -->
+                                            
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Ganti bootstrap 5 menjadi 4 -->
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        </body>
 
-         <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">Tambah Barang Masuk</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
             
-            <!-- Modal body --> <!-- kode untuk tambah barang -->
-            <form method="post">
-            <div class="modal-body">
-
-            <select name="barangnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
-                <?php
-                $ambilsemuadatanya = mysqli_query($conn, "SELECT * from stock");
-                while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
-                    $namabarangnya = $fetcharray['namabarang'];
-                    $idbarangnya = $fetcharray['idbarang'];
-                ?>
-
-                <option value="<?=$idbarangnya;?>"><?=$namabarangnya;?></option>
-
-                 <?php
-                }
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Tambah matkul</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
                 
-                ?>
-            </select>
+                <!-- Modal body --> <!-- kode untuk tambah barang -->
+                <form method="post">
+                <div class="modal-body">
 
-            <br>
-            <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
-            <br> <!-- function php -->
-            <input type="text" name="penerima" class="form-control" placeholder="Penerima" required>
-            <br>
-            <button type="submit" name="barangmasuk" class="btn btn-primary">Submit</button>
-            </div>
-            </form>
-            </div>
-        </div>
-    </div> 
+                <select name="matkulnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
+                    <?php
+                    $ambilsemuadatanya = mysqli_query($conn, "SELECT * from matakuliah");
+                    while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
 
-    </body>
+                        $idbarangnya = $fetcharray['idmatkul'];
+                        $namamatkulnya = $fetcharray['namamatkul'];
+                        $tanggalmatkulnya = $fetcharray['tanggalmatkul'];
+                        $namdosennya = $fetcharray['namadosen'];
+                        $jammatkulnya = $fetcharray['jammatkul'];
+                    ?>
+
+                    <option value="<?=$idbarangnya;?>">
+                    <?=$namamatkulnya;?>>
+                    <?=$namamatkulnya;?>>
+                    <?=$tanggalmatkulnya;?>>
+                    <?=$namdosennya;?>>
+                    <?=$jammatkulnya;?>
+                    </option>
+
+                    <?php
+                    }
+                    
+                    ?>
+                </select>
+
+                <input type="text" name="namamatkul" class="form-control" placeholder="Nama matkul" required>
+                <br>
+                <input type="text" name="namadosen" class="form-control" placeholder="Nama dosen" required>
+                <br>
+                <input type="number" name="jammatkul" class="form-control" placeholder="Jam Matkul" required>
+                <br>
+                <button type="submit" name="tambahmatkul" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div> 
+    
 </html>
