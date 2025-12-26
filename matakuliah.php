@@ -143,28 +143,29 @@ require 'cek.php';
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
+                                            <th>Id Matkul</th>
                                             <th>Matkul</th>
                                             <th>Dosen</th>
                                             <th>Jam matkul</th>
                                             <th>Hari</th>
-                                            <th>Tanggal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $ambilsemuadatamatkul = mysqli_query($conn, "SELECT * FROM matakuliah");
                                             while($data = mysqli_fetch_array($ambilsemuadatamatkul)){
+                                                $idmatkul = $data['idmatkul'];
                                                 $namamatkul = $data['namamatkul'];
                                                 $namadosen = $data['namadosen'];
                                                 $jammatkul = $data['jammatkul'];
-                                                $tanggal = $data['tanggal'];
-                
+                                                $hari = $data['hari'];
                                         ?>
                                         <tr>
+                                            <td><?=$idmatkul;?></td>
                                             <td><?=$namamatkul;?></td>
                                             <td><?=$namadosen;?></td>
-                                            <td><?=$jammatkul?></td
-                                            <td><?=$tanggal?></td>
+                                            <td><?=$jammatkul;?></td>
+                                            <td><?=$hari;?></td>
                                         </tr>
                                         <?php
                                             };
