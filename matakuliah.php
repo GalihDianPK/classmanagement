@@ -217,37 +217,41 @@ require 'cek.php';
                 <form method="post">
                 <div class="modal-body">
 
-                <select name="matkulnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
+                <!-- ini kode untuk menampilkan database yang ada di mata kuliah dan select option -->
+                <!-- <select name="matkulnya" class="form-control"> ini dimasukin ke function.php (barangnya) -->
                     <?php
-                    $ambilsemuadatanya = mysqli_query($conn, "SELECT * from matakuliah");
-                    while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
+                    // $ambilsemuadatanya = mysqli_query($conn, "SELECT * from matakuliah");
+                    // while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
 
-                        $idbarangnya = $fetcharray['idmatkul'];
-                        $namamatkulnya = $fetcharray['namamatkul'];
-                        $tanggalmatkulnya = $fetcharray['tanggalmatkul'];
-                        $namdosennya = $fetcharray['namadosen'];
-                        $jammatkulnya = $fetcharray['jammatkul'];
-                    ?>
+                    //     $idbarangnya = $fetcharray['idmatkul'];
+                    //     $namamatkulnya = $fetcharray['namamatkul'];
+                    //     $tanggalmatkulnya = $fetcharray['tanggalmatkul'];
+                    //     $namdosennya = $fetcharray['namadosen'];
+                    //     $jammatkulnya = $fetcharray['jammatkul'];
+                    // ?>
 
-                    <option value="<?=$idbarangnya;?>">
-                    <?=$namamatkulnya;?>>
-                    <?=$namamatkulnya;?>>
-                    <?=$tanggalmatkulnya;?>>
-                    <?=$namdosennya;?>>
-                    <?=$jammatkulnya;?>
-                    </option>
+                    <!-- //? ini kode untuk menampilkan database yang ada di mata kuliah dan select option -->
+                    <!-- // <option value="<?=$idbarangnya;?>">
+                    // <?=$namamatkulnya;?>
+                    // <?=$namamatkulnya;?>
+                    // <?=$tanggalmatkulnya;?>
+                    // <?=$namdosennya;?>>
+                    // <?=$jammatkulnya;?>
+                    // </option> 
 
                     <?php
-                    }
+                    //}
                     
                     ?>
-                </select>
+                </select> --> 
 
                 <input type="text" name="namamatkul" class="form-control" placeholder="Nama matkul" required>
                 <br>
                 <input type="text" name="namadosen" class="form-control" placeholder="Nama dosen" required>
                 <br>
-                <input type="number" name="jammatkul" class="form-control" placeholder="Jam Matkul" required>
+                <input type="text" name="jammatkul" class="form-control" placeholder="Jam Matkul" required>
+                <br>
+                <input type="text" name="hari" class="form-control" placeholder="Hari" required>
                 <br>
                 <button type="submit" name="tambahmatkul" class="btn btn-primary">Simpan</button>
                 </div>

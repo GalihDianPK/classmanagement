@@ -4,14 +4,13 @@ session_start();
 $conn = mysqli_connect("localhost", "root", "", "classmanagement"); //? connect database
 
 //? memasukkan data matakuliah baru
-if(isset($_POST['addnewmatkul'])){
-    $idmatkul = $_POST['idmatkul'];
+if(isset($_POST['tambahmatkul'])){
     $namamatkul = $_POST['namamatkul'];
-    $tanggal = $_POST['tanggal'];
+    $hari = $_POST['hari'];
     $namadosen = $_POST['namadosen'];
-    $jammatkul = $_post['jammatkul'];
+    $jammatkul = $_POST['jammatkul'];
 
-    $addtotable = mysqli_query($conn, "INSERT into matkul (idmatkul, namamatkul, tanggal, namadosen, jammatkul) values('$idmatkul', '$namamatkul', '$tanggal', '$namadosen', '$jammatkul')");
+    $addtotable = mysqli_query($conn, "INSERT into matakuliah (namamatkul, hari, namadosen, jammatkul) values('$namamatkul', '$hari', '$namadosen', '$jammatkul')");
     if($addtotable) {
         header('Location: matakuliah.php');
     } else {
