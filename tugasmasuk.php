@@ -148,12 +148,11 @@ require 'cek.php';
                                             <th>Dosen</th>
                                             <th>Jam matkul</th>
                                             <th>Hari</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $ambilsemuadatamatkul = mysqli_query($conn, "SELECT * FROM matakuliah");
+                                            $ambilsemuadatamatkul = mysqli_query($conn, "SELECT * FROM tugasmasuk");
                                             while($data = mysqli_fetch_array($ambilsemuadatamatkul)){
                                                 $idmatkul = $data['idmatkul'];
                                                 $namamatkul = $data['namamatkul'];
@@ -217,38 +216,41 @@ require 'cek.php';
                 <!-- Modal body --> <!-- kode untuk tambah barang -->
                 <form method="post">
                 <div class="modal-body">
+                    
 
-                <select name="matkulnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
+                <!-- ini kode untuk menampilkan database yang ada di mata kuliah dan select option -->
+                <!-- <select name="matkulnya" class="form-control"> ini dimasukin ke function.php (barangnya) -->
+                <select name="matkulnya" class="form-control">
                     <?php
                     $ambilsemuadatanya = mysqli_query($conn, "SELECT * from matakuliah");
                     while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
 
                         $idbarangnya = $fetcharray['idmatkul'];
                         $namamatkulnya = $fetcharray['namamatkul'];
-                        $tanggalmatkulnya = $fetcharray['tanggalmatkul'];
-                        $namdosennya = $fetcharray['namadosen'];
-                        $jammatkulnya = $fetcharray['jammatkul'];
+                        $deadline = $fetcharray['hari'];
                     ?>
 
+                    <!-- //? ini kode untuk menampilkan database yang ada di mata kuliah dan select option -->
                     <option value="<?=$idbarangnya;?>">
-                    <?=$namamatkulnya;?>>
-                    <?=$namamatkulnya;?>>
-                    <?=$tanggalmatkulnya;?>>
-                    <?=$namdosennya;?>>
-                    <?=$jammatkulnya;?>
-                    </option>
+                     <?=$namamatkulnya;?>
+                     <?=$tugasdiberikan;?>
+                     <?=$deadline;?>
+                    </option> 
 
                     <?php
-                    }
-                    
+
+                    };
+
                     ?>
-                </select>
+                </select>  
 
                 <input type="text" name="namamatkul" class="form-control" placeholder="Nama matkul" required>
                 <br>
                 <input type="text" name="namadosen" class="form-control" placeholder="Nama dosen" required>
                 <br>
-                <input type="number" name="jammatkul" class="form-control" placeholder="Jam Matkul" required>
+                <input type="text" name="jammatkul" class="form-control" placeholder="Tugas diberikan" required>
+                <br>
+                <input type="text" name="hari" class="form-control" placeholder="Deadline" required>
                 <br>
                 <button type="submit" name="tambahmatkul" class="btn btn-primary">Simpan</button>
                 </div>
